@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { App, Configurations } from "./App";
+import { App, Configurations } from "./components/App";
 
 type PollWidget = {
   q: any;
@@ -12,7 +12,7 @@ const pluginPoll = (window: Window) => {
   // set default configurations
   let configurations: Configurations = {
     question: "Is that really a poll?",
-    answers: ["Yeah, definitely!", "Guess so...", "Nah, are you insane?!"],
+    options: ["Yeah, definitely!", "Guess so...", "Nah, are you insane?!"],
   };
 
   // all methods that were called till now and stored in queue
@@ -43,7 +43,7 @@ const pluginPoll = (window: Window) => {
         }
 
         const root = createRoot(container);
-        root.render(<App configurations={configurations} />);
+        root.render(<App {...configurations} />);
       }
       // apiHandler(queue[i][0], queue[i][1]);
       else console.log(`Unknown api method: ${methodName}`);

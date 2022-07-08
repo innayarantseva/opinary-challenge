@@ -2,6 +2,9 @@ import { Configuration } from "webpack";
 import * as path from "path";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
 import "webpack-dev-server";
+import createStyledComponentsTransformer from "typescript-plugin-styled-components";
+
+const styledComponentsTransformer = createStyledComponentsTransformer();
 
 const config: Configuration = {
   mode: "development",
@@ -31,6 +34,11 @@ const config: Configuration = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: "ts-loader",
+        options: {
+          getCustomTransformers: () => ({
+            before: [styledComponentsTransformer],
+          }),
+        },
       },
       // {
       //     test: /\.css$/,

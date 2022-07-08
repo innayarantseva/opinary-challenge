@@ -11,44 +11,23 @@
     <h1>Demo page</h1>
     <h2>Here you can find the demo!</h2>
     <script>
-      (function (
-        window,
-        document,
-        scriptTagName,
-        scriptAddress,
-        globalName,
-        scriptElement,
-        otherScriptElement
-      ) {
-        // store the name of the global variable
-        window["PollWidget"] = globalName;
-
-        // creates a global variable to delegate, so it will be available before script loaded
-        window[globalName] =
-          window[globalName] ||
+      (function (w, d, s, o, f, js, fjs) {
+        w["PollWidget"] = o;
+        w[o] =
+          w[o] ||
           function () {
-            // pushes arguments that were passed to delegate into queue
-            // so they can be accessed later from the main script
-            (window[globalName].q = window[globalName].q || []).push(arguments);
+            (w[o].q = w[o].q || []).push(arguments);
           };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, "script", "poll", "./bundle.js");
 
-        // epoch timestamp when the SDK was initialized
-        window[globalName].l = 1 * new Date();
+      var configuration = {}; // here goes your configuration, leave it empty for a default question/options
 
-        // dynamically create a script tag element with async execution,
-        scriptElement = document.createElement(scriptTagName);
-        otherScriptElement = document.getElementsByTagName(scriptTagName)[0];
-        scriptElement.async = 1; // it is just a shorter version of `true`
-        scriptElement.src = scriptAddress;
-
-        // inject the script tag before first script tag found within document
-        otherScriptElement.parentNode.insertBefore(
-          scriptElement,
-          otherScriptElement
-        );
-      })(window, document, "script", "./bundle.js", "poll");
-
-      poll("init", { question: "Is it working?" });
+      poll("init", configuration);
     </script>
   </body>
 </html>
