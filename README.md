@@ -54,6 +54,8 @@ Add this to the HTML page:
     </script>
 ```
 
+This function was taken from the article above.
+
 #### Configuring question and options
 
 We need to pass a configuration object with an `init` function like this:
@@ -84,3 +86,23 @@ Suggested data structure:
 This map should let us get the required number easily, without looking througout the array of questions, for example.
 
 For manipulations with `localStorage` I've used custom hook, which I've already wrote for my prev coding assignment (it is not super-sophisticated though).
+
+### Styling
+
+Decided to do with something not too complicated as I'm starting to run out of time 🙈
+
+Some styles for hover and selected option. The fewer the styles the better it fits in various environments.
+
+### Tests
+
+It's just 20 minutes left in the assignment, and I'm going to write some unit tests.
+
+What should be tested:
+
+- App initialization
+- Result addition
+- Text in option (if user has clicked on any option, they should display the number of votes for the option)
+- Displaying right percentage for the results
+- ...many more
+
+I've really managed to write a single test and 5 hours are done 😬

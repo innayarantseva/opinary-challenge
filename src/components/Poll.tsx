@@ -6,6 +6,13 @@ import { Header } from "./Header";
 import { Option } from "./Option";
 import { Options } from "./Options";
 
+export const getPercentage = (
+  totalNumber: number,
+  partialNumber: number
+): string => {
+  return ` — ${Math.round(((partialNumber * 100) / totalNumber) * 100) / 100}%`;
+};
+
 const Container = styled.section`
   font-family: sans-serif;
   color: #171717;
@@ -76,10 +83,7 @@ export const Poll: React.FC<PollProps> = ({ question, options }) => {
               <div>
                 {option}
                 {answer &&
-                  ` — ${(
-                    (questionResults[option] * 100) /
-                    overallNumberOfVotes
-                  ).toFixed(0)}%`}
+                  getPercentage(overallNumberOfVotes, questionResults[option])}
               </div>
             </Option>
           );
