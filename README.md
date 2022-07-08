@@ -4,7 +4,7 @@ Coding challenge for Opinary
 
 ## How to use
 
-Here will be a link to Netlify with two demo pages
+Here is the link to view the result on a couple of HTML demo pages: https://opinary-challenge.netlify.app/
 
 To get it up and running locally:
 
