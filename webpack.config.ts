@@ -1,6 +1,7 @@
 import { Configuration } from "webpack";
 import * as path from "path";
 import * as HtmlWebpackPlugin from "html-webpack-plugin";
+import * as CopyWebpackPlugin from "copy-webpack-plugin";
 import "webpack-dev-server";
 import createStyledComponentsTransformer from "typescript-plugin-styled-components";
 
@@ -33,32 +34,13 @@ const config: Configuration = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: "ts-loader",
+        loader: "ts-loader",
         options: {
           getCustomTransformers: () => ({
             before: [styledComponentsTransformer],
           }),
         },
       },
-      // {
-      //     test: /\.css$/,
-      //     include: /\.module\.css$/,
-      //     use: [
-      //         'style-loader',
-      //         {
-      //             loader: 'css-loader',
-      //             options: {
-      //                 importLoaders: 1,
-      //                 modules: true
-      //             }
-      //         }
-      //     ]
-      // },
-      // {
-      //     test: /\.css$/,
-      //     exclude: /\.module\.css$/,
-      //     use: ['style-loader', 'css-loader']
-      // }
     ],
   },
 
@@ -69,7 +51,9 @@ const config: Configuration = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./demo/index.html",
-      // favicon: './demo/favicon-32x32.png'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "./demo/pages", to: "pages" }],
     }),
   ],
 };

@@ -9,25 +9,12 @@
   </head>
   <body>
     <h1>Demo page</h1>
-    <h2>Here you can find the demo!</h2>
-    <script>
-      (function (w, d, s, o, f, js, fjs) {
-        w["PollWidget"] = o;
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.id = o;
-        js.src = f;
-        js.async = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, "script", "poll", "./bundle.js");
-
-      var configuration = {}; // here goes your configuration, leave it empty for a default question/options
-
-      poll("init", configuration);
-    </script>
+    <ul>
+      <li><a href="/pages/1.html">Page with a poll - 1</a></li>
+      <li><a href="/pages/2.html">Page with a poll - 2</a></li>
+    </ul>
+    <h2>
+      Click on any link and... hopefully... enjoy the result of the challenge :)
+    </h2>
   </body>
 </html>

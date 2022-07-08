@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Demo page of the widget</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+  </head>
+  <body>
+    <h1>Demo page</h1>
+    <ul>
+      <li><a href="/pages/1.html">Page with a poll - 1</a></li>
+      <li><a href="/pages/2.html">Page with a poll - 2</a></li>
+    </ul>
+
+    <h2>Second demo</h2>
+
+    <script>
+      (function (w, d, s, o, f, js, fjs) {
+        w["PollWidget"] = o;
+        w[o] =
+          w[o] ||
+          function () {
+            (w[o].q = w[o].q || []).push(arguments);
+          };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, "script", "poll", "/bundle.js");
+
+      var configuration = {
+        question: "How you like the Opinary test?",
+        options: [
+          "It was great and so challenging",
+          "Not bad, but you can improve",
+          "It was a nightmare, never again",
+        ],
+      };
+
+      poll("init", configuration);
+    </script>
+  </body>
+</html>

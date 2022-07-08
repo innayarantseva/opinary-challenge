@@ -2,20 +2,25 @@ import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Configurations } from "./App";
+import { Header } from "./Header";
+import { Option } from "./Option";
+import { Options } from "./Options";
 
-const Options = styled.ul`
-  padding: 0;
-  margin: 0;
-`;
+const Container = styled.section`
+  font-family: sans-serif;
+  color: #171717;
 
-type OptionProps = {
-  selected?: boolean;
-};
+  min-width: 268px;
+  max-width: 468px;
 
-const Option = styled.li`
-  list-style: none;
-  background: ${(props: OptionProps) =>
-    props.selected ? "palevioletred" : "white"};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: 0px 0px 16px 4px rgb(0 0 0 / 10%);
+  border-radius: 16px;
+
+  padding: 16px;
 `;
 
 type PollProps = Configurations;
@@ -36,6 +41,10 @@ export const Poll: React.FC<PollProps> = ({ question, options }) => {
     );
   }, [results, question, options]);
 
+  const overallNumberOfVotes = useMemo(() => {
+    return Object.values(questionResults).reduce((acc, num) => (acc += num), 0);
+  }, [questionResults]);
+
   const onOptionClick = useCallback(
     (option: string) => {
       if (!answer) {
@@ -53,8 +62,9 @@ export const Poll: React.FC<PollProps> = ({ question, options }) => {
   );
 
   return (
-    <section>
-      <h2>{question}</h2>
+    <Container>
+      <Header question={question} numberOfVotes={overallNumberOfVotes} />
+
       <Options>
         {options.map((option, index) => {
           return (
@@ -63,12 +73,18 @@ export const Poll: React.FC<PollProps> = ({ question, options }) => {
               onClick={() => onOptionClick(option)}
               selected={answer === option}
             >
-              {option}
-              {answer && ` ${questionResults[option]}`}
+              <div>
+                {option}
+                {answer &&
+                  ` — ${(
+                    (questionResults[option] * 100) /
+                    overallNumberOfVotes
+                  ).toFixed(0)}%`}
+              </div>
             </Option>
           );
         })}
       </Options>
-    </section>
+    </Container>
   );
 };

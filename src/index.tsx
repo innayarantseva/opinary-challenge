@@ -22,9 +22,9 @@ const pluginPoll = (window: Window) => {
   let globalObject = window[window["PollWidget"]];
 
   // @ts-ignore
-  let queue = globalObject.q;
+  let queue = globalObject && globalObject.q;
 
-  console.log(queue);
+  console.log("Queue object: ", queue);
 
   if (queue) {
     for (var i = 0; i < queue.length; i++) {

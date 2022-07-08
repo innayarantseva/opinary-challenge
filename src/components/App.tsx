@@ -7,10 +7,5 @@ export type Configurations = {
 };
 
 export const App: React.FC<Configurations> = (configurations) => {
-  return (
-    <section>
-      <h1>The Poll</h1>
-      <Poll {...configurations} />
-    </section>
-  );
+  return <Poll {...configurations} />;
 };
